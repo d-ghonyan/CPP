@@ -1,4 +1,5 @@
 #include "Contact.hpp"
+#include <iostream>
 
 int	Contact::get_index()
 {
@@ -32,30 +33,61 @@ std::string Contact::get_number()
 
 void		Contact::set_index(int val)
 {
-	index = val;
+	if (val >= 0 && val <= 7)
+		index = val;
 }
 
 void		Contact::set_fname(std::string val)
 {
-	fname = val;
+	if (val == "")
+	{
+		std::cout << "Warning, empty first name";
+		val = "empty";
+	}
+	else
+		fname = val;
 }
 
 void		Contact::set_lname(std::string val)
 {
-	lname = val;
+	if (val == "")
+	{
+		std::cout << "Warning, empty last name";
+		val = "empty";
+	}
+	else
+		lname = val;
 }
 
 void		Contact::set_nname(std::string val)
 {
-	nname = val;
+	if (val == "")
+	{
+		std::cout << "Warning, empty nickname";
+		val = "empty";
+	}
+	else
+		nname = val;
 }
 
 void		Contact::set_secret(std::string val)
 {
-	secret = val;
+	if (val == "")
+	{
+		std::cout << "Warning, empty secret";
+		val = "empty";
+	}
+	else
+		secret = val;
 }
 
 void		Contact::set_number(std::string val)
 {
-	number = val;
+	if (val == "")
+	{
+		std::cout << "Warning, empty number";
+		val = "empty";
+	}
+	else
+		number = val;
 }
