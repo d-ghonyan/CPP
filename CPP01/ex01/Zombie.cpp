@@ -10,6 +10,13 @@ Zombie::Zombie(std::string _name) : name ( _name )
 
 }
 
+void	Zombie::setname(std::string name)
+{
+	this->name = name;
+	if (name.empty())
+		this->name = "empty";
+}
+
 void	Zombie::announce()
 {
 	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
