@@ -13,7 +13,7 @@ $(NAME): $(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
 
 clean:
-	rm -f *.o
+	rm -f *.o *.replace
 
 fclean: clean
 	rm -f $(NAME)
