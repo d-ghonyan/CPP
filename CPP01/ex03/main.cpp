@@ -4,7 +4,6 @@
 
 int main()
 {
-	// how tf do i do this
 	{
 		Weapon club("crude spiked club");
 		HumanA bob("Bob", club);

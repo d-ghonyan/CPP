@@ -7,13 +7,12 @@ HumanB::HumanB(std::string _name): name(_name)
 
 HumanB::~HumanB()
 {
-	delete this->weapon;
+
 }
 
-void	HumanB::setWeapon(Weapon weapon)
+void	HumanB::setWeapon(Weapon& weapon)
 {
-	delete this->weapon;
-	this->weapon = new Weapon(weapon.gettype());
+	this->weapon = &weapon;
 }
 
 void	HumanB::attack()
