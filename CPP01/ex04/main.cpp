@@ -6,6 +6,7 @@
 int	filesize(char *name)
 {
 	int				size = 0;
+
 	char			c[READCOUNT];
 	std::ifstream	readfile(name);
 
@@ -22,8 +23,8 @@ int	filesize(char *name)
 
 void	replace_contents(char *buf, char *find, char *repl, char *filename)
 {
-	int			res;
-	int			pos = 0;
+	size_t			pos = 0;
+
 	std::string	f(find);
 	std::string	s(buf);
 	std::string	r(repl);

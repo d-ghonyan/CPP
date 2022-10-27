@@ -4,7 +4,7 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -c
 
-%.cpp:
+%.o: %.cpp
 	$(CC) $(CFLAGS) $(SRCS);
 
 all: $(NAME)

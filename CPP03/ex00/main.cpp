@@ -2,43 +2,20 @@
 
 int main()
 {
-	ClapTrap trap("Urod");
+	ClapTrap	trap1("Hello1");
+	ClapTrap	trap2(trap1);
 
-	trap.attack("Anasun");
-	trap.attack("Anasun");
-	trap.attack("Anasun");
-	trap.attack("Anasun");
-	trap.attack("Anasun");
-	trap.attack("Anasun");
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
-	trap.beRepaired(1);
+	ClapTrap	new_("NEW");
+
+	new_ = (trap1 = (trap2 = new_));
+	new_.beRepaired(123);
+	new_.attack("hello");
+	new_.takeDamage(123);
+	new_.takeDamage(123);
+	new_.attack("hello");
+	new_.attack("hello");
+	new_.beRepaired(123);
+	new_.beRepaired(123);
+	new_.beRepaired(123);
+	new_.attack("hello");
 }

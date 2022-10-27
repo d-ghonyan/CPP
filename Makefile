@@ -1,9 +1,11 @@
 #run make fclean in all directories
 
-SUBDIRS := $(wildcard */ex*/.)
+SUBDIRS = $(wildcard */ex*/.)
+RULE = fclean
 
 all: $(SUBDIRS)
+
 $(SUBDIRS):
-		$(MAKE) fclean -C $@
+		$(MAKE) $(RULE) -C $@
 
 .PHONY: all $(SUBDIRS)
