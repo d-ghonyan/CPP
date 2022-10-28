@@ -1,9 +1,14 @@
+#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-	// Fixed a = Fixed();
-	// std::cout << a.a;
-	// a.a = 177878;
-	// Fixed b = Fixed();
-	// std::cout << b.a;
+	ClapTrap	trap1("Hello1");
+	ClapTrap	trap2(trap1);
+
+	ClapTrap	new_("NEW");
+
+	FragTrap a("hello");
+
+	// std::cout <<  << "\n";
 }

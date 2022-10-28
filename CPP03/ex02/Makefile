@@ -1,5 +1,5 @@
 CC = c++
-NAME = repwork
+NAME = claptrap
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -c
