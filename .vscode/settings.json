@@ -76,5 +76,7 @@
 		"mutex": "cpp",
 		"ratio": "cpp",
 		"stack": "cpp"
-	}
+	},
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false
 }

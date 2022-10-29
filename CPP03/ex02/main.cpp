@@ -1,4 +1,5 @@
 #include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
@@ -7,15 +8,11 @@ int main()
 
 	ClapTrap	new_("NEW");
 
-	new_ = (trap1 = (trap2 = new_));
-	new_.beRepaired(123);
-	new_.attack("hello");
-	new_.takeDamage(123);
-	new_.takeDamage(123);
-	new_.attack("hello");
-	new_.attack("hello");
-	new_.beRepaired(123);
-	new_.beRepaired(123);
-	new_.beRepaired(123);
-	new_.attack("hello");
+	FragTrap a("hello");
+
+	a.attack("target");
+	trap1.attack("target");
+	trap2.attack("target");
+	a.beRepaired(123);
+	a.highFiveGuys();
 }

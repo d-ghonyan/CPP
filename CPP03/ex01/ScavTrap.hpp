@@ -4,11 +4,13 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class ScavTrap : public ClapTrap
 {
+private:
+	ScavTrap();
 public:
-	FragTrap(std::string name);
-	~FragTrap();
-	void highFiveGuys(void);
+	ScavTrap(std::string name);
+	~ScavTrap();
+	void guardGate(void);
 	virtual	void attack(const std::string &target);
 };

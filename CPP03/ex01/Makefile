@@ -1,5 +1,5 @@
 CC = c++
-NAME = claptrap
+NAME = scavtrap
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -c
