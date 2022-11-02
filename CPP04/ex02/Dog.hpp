@@ -2,14 +2,17 @@
 
 #include <iostream>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
-class Cat : public Animal
+class Dog : public Animal
 {
+private:
+	Brain *brain;
 public:
-	Cat();
-	Cat(const Cat &other);
-	~Cat();
-	Cat &Cat::operator=(Cat &other);
+	Dog();
+	Dog(const Dog &other);
+	Dog &operator=(const Dog &other);
+	~Dog();
 	void insertIdea(std::string idea);
 	std::string getIdea(size_t index);
 	void makeSound() const;

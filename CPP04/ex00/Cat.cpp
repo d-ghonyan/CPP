@@ -11,6 +11,12 @@ Cat::Cat()
 	std::cout << "Cat's constructor called!\n";
 }
 
+Cat &Cat::operator=(Cat &other)
+{
+	(void)other;
+	return (*this);
+}
+
 Cat::Cat(const Cat &other)
 {
 	(void)other;

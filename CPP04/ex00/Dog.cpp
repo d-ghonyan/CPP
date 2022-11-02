@@ -11,6 +11,12 @@ Dog::Dog()
 	std::cout << "Dog's constructor called!\n";
 }
 
+Dog &Dog::operator=(Dog &other)
+{
+	(void)other;
+	return (*this);
+}
+
 Dog::Dog(const Dog &other)
 {
 	(void)other;

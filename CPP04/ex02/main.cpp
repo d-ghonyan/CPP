@@ -6,7 +6,7 @@ int main()
 {
 	size_t size = 100;
 	Animal *arr[100];
-	// Animal a();
+
 	for (size_t i = 0; i < size / 2; i++)
 	{
 		arr[i] = new Cat();
