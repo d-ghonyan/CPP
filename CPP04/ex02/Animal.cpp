@@ -5,11 +5,6 @@ std::string Animal::getType() const
 	return type;
 }
 
-void Animal::makeSound() const
-{
-	std::cout << "* Animal noises * \n";
-}
-
 Animal::Animal(): type("")
 {
 	std::cout << "Animal's constructor called!\n";
