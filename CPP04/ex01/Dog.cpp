@@ -5,7 +5,7 @@ void Dog::makeSound() const
 	std::cout << "Woof!\n";
 }
 
-Dog::Dog()
+Dog::Dog(): brain(new Brain)
 {
 	type = "Dog";
 	std::cout << "Dog's constructor called!\n";
@@ -38,5 +38,6 @@ Dog &Dog::operator=(const Dog &other)
 
 Dog::~Dog()
 {
+	delete brain;
 	std::cout << "Dog's destructor called!\n";
 }
