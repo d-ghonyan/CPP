@@ -10,6 +10,7 @@ private:
 	std::string nname;
 	std::string secret;
 	std::string number;
+	int			isNumber(std::string s);
 public:
 	int			get_index();
 	std::string	get_fname();
@@ -18,9 +19,9 @@ public:
 	std::string	get_secret();
 	std::string	get_number();
 	void		set_index(int val);
-	void		set_fname(std::string val);
-	void		set_lname(std::string val);
-	void		set_nname(std::string val);
-	void		set_secret(std::string val);
-	void		set_number(std::string val);
+	int			set_fname(std::string val);
+	int			set_lname(std::string val);
+	int			set_nname(std::string val);
+	int			set_secret(std::string val);
+	int			set_number(std::string val);
 };

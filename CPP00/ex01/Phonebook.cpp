@@ -3,15 +3,6 @@
 #include "Phonebook.hpp"
 #include "Contact.hpp"
 
-Phonebook::Phonebook() : len(0)
-{
-}
-
-int	Phonebook::get_len()
-{
-	return len;
-}
-
 int		Phonebook::isNumber(std::string s)
 {
 	int	i = -1;
@@ -21,32 +12,46 @@ int		Phonebook::isNumber(std::string s)
 	return (1);
 }
 
+Phonebook::Phonebook() : len(0) {}
+
+int	Phonebook::get_len() { return len; }
+
 void	Phonebook::add(int *i)
 {
-	int			j = -1;
+	int			err = 0;
+	int			j = 0;
 	std::string	commands[5] = {"First name", "Last name", "Nickname", "Phone number", "Darkest secret"};
 	std::string	val;
 
 	if (*i > 7)
 		*i = 0;
-	while (++j < 5)
+	while (j < 5)
 	{
 		std::cout << commands[j] << ":\n";
 		std::cin >> val;
 		switch (j)
 		{
 		case 0:
-			contacts[*i].set_fname(val);
+			err = contacts[*i].set_fname(val);
+			break ;
 		case 1:
-			contacts[*i].set_fname(val);
+			err = contacts[*i].set_lname(val);
+			break ;
 		case 2:
-			contacts[*i].set_fname(val);
+			err = contacts[*i].set_nname(val);
+			break ;
 		case 3:
-			contacts[*i].set_fname(val);
+			err = contacts[*i].set_number(val);
+			break ;
 		case 4:
-			contacts[*i].set_fname(val);
+			err = contacts[*i].set_secret(val);
+			break ;
 		}
-		contacts[*i].set_index(*i);
+		if (!err)
+		{
+			j++;
+			contacts[*i].set_index(*i);
+		}
 	}
 	if (len < 8)
 		len++;

@@ -13,31 +13,31 @@ std::string Contact::get_fname()
 
 std::string Contact::get_lname()
 {
-	return fname;
+	return lname;
 }
 
 std::string Contact::get_nname()
 {
-	return fname;
+	return nname;
 }
 
 std::string Contact::get_secret()
 {
-	return fname;
+	return secret;
 }
 
 std::string Contact::get_number()
 {
-	return fname;
+	return number;
 }
 
-void		Contact::set_index(int val)
+void	Contact::set_index(int val)
 {
 	if (val >= 0 && val <= 7)
 		index = val;
 }
 
-void		Contact::set_fname(std::string val)
+int	Contact::set_fname(std::string val)
 {
 	if (val == "")
 	{
@@ -46,9 +46,10 @@ void		Contact::set_fname(std::string val)
 	}
 	else
 		fname = val;
+	return (0);
 }
 
-void		Contact::set_lname(std::string val)
+int	Contact::set_lname(std::string val)
 {
 	if (val == "")
 	{
@@ -57,9 +58,10 @@ void		Contact::set_lname(std::string val)
 	}
 	else
 		lname = val;
+	return (0);
 }
 
-void		Contact::set_nname(std::string val)
+int	Contact::set_nname(std::string val)
 {
 	if (val == "")
 	{
@@ -68,9 +70,10 @@ void		Contact::set_nname(std::string val)
 	}
 	else
 		nname = val;
+	return (0);
 }
 
-void		Contact::set_secret(std::string val)
+int	Contact::set_secret(std::string val)
 {
 	if (val == "")
 	{
@@ -79,10 +82,13 @@ void		Contact::set_secret(std::string val)
 	}
 	else
 		secret = val;
+	return (0);
 }
 
-void		Contact::set_number(std::string val)
+int	Contact::set_number(std::string val)
 {
+	if (!isNumber(val))
+		return (1);
 	if (val == "")
 	{
 		std::cout << "Warning, empty number";
@@ -90,4 +96,14 @@ void		Contact::set_number(std::string val)
 	}
 	else
 		number = val;
+	return (0);
+}
+
+int		Contact::isNumber(std::string s)
+{
+	int	i = -1;
+	while (s[++i])
+		if (s[i] > '9' || s[i] < '0')
+			return (0);
+	return (1);
 }

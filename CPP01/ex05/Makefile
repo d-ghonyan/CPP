@@ -1,22 +1,25 @@
-CC = c++
+UNAME = $(shell uname -s)
+CXX = c++
 NAME = karen
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -c
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) $(SRCS);
+ifneq ($(UNAME), Darwin)
+	CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+endif
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CXX) $(OBJS) -o $(NAME)
 
 clean:
 	rm -f *.o
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME).exe
+
 
 re: fclean all
 

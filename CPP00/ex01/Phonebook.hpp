@@ -4,9 +4,9 @@
 class Phonebook
 {
 private:
-	int		isNumber(std::string s);
 	int		len;
 	Contact	contacts[8];
+	int		isNumber(std::string s);
 public:
 	Phonebook();
 	int		get_len();
