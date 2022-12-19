@@ -77,7 +77,6 @@ int main(int argc, char **argv)
 		}
 		readfile.read(buf, size);
 		buf[size] = '\0';
-		std::cout << buf << "\n";
 		replace_contents(buf, argv[2], argv[3], argv[1]);
 	}
 }

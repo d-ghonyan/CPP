@@ -1,6 +1,6 @@
 UNAME = $(shell uname -s)
 CXX = c++
-NAME = useful_fixed
+NAME = moarbrainz
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
