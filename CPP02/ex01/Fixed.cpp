@@ -1,9 +1,26 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed(const int inp) : fixed(0)
+Fixed::Fixed(): fixed(0)
 {
 	std::cout << "Default constructor called!\n";
 }
+
+Fixed::Fixed(const int inp)
+{
+	fixed = inp * (1 << bits);
+	std::cout << "Int constructor called!\n";
+}
+
+Fixed::Fixed(const float inp)
+{
+	fixed = static_cast<int>(inp * (1 << bits));
+	std::cout << "Float constructor called!\n";
+}
+
+// float Fixed::fixed_to_float(int inp)
+// {
+// 	return (static_cast<float>(inp) / (1 << bits));
+// }
 
 Fixed::Fixed(const Fixed &other)
 {
@@ -18,14 +35,21 @@ Fixed& Fixed::operator=(const Fixed &other)
 	return *this;
 }
 
-int Fixed::float_to_fixed(float inp)
+int Fixed::toInt(void) const
 {
-	return static_cast<int>(inp * (1 << bits));
+	// return static_cast<int>(fixed * (1 << bits));
+	return (static_cast<int>(fixed) / (1 << bits));
 }
 
-float Fixed::fixed_to_float(int inp)
+float Fixed::toFloat(void) const
 {
-    return (static_cast<float>(inp) / (1 << bits));
+	return (static_cast<float>(fixed) / static_cast<float>(1 << bits));
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
+{
+	os << fixed.toFloat();
+	return os;
 }
 
 Fixed::~Fixed() { std::cout << "Destructor called!\n"; }
