@@ -9,7 +9,7 @@ public:
 	Cat();
 	Cat(const Cat &other);
 	~Cat();
-	Cat &Cat::operator=(Cat &other);
+	Cat& operator=(Cat &other);
 	void insertIdea(std::string idea);
 	std::string getIdea(size_t index);
 	void makeSound() const;

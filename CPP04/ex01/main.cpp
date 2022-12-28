@@ -17,6 +17,12 @@ int main()
 		arr[i] = new Dog();
 	}
 	
+	Dog a;
+
+	a.insertIdea("kov");
+
+	std::cout << a.getIdea(1) << "\n";
+
 	for (size_t i = 0; i < size; i++)
 	{
 		delete arr[i];
