@@ -20,7 +20,6 @@ clean:
 fclean: clean
 	rm -f $(NAME) $(NAME).exe
 
-
 re: fclean all
 
 .PHONY: all clean fclean re
