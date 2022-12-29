@@ -18,6 +18,7 @@ public:
 	int	getGrade() const;
 	void increment(void);
 	void decrement(void);
+	void signForm();
 	~Bureaucrat();
 }; 
 
