@@ -1,9 +1,10 @@
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 class Form
 {
 private:
-	bool	signed;
+	bool	is_signed;
 	const	std::string name;
 	const	int grade_sign;
 	const	int grade_exec;
@@ -11,50 +12,46 @@ private:
 	class	GradeTooLowException : public std::exception { const char *what () const throw(); };
 public:
 	Form();
-	Form(const std::string name, const int grade_sign, const int grade_exec;);
+	Form(const std::string _name, const int _grade_sign, const int _grade_exec);
 	Form(const Form& other);
-	bool	getSigned();
-	int		getName();
-	int		getGradeSign();
-	int		getGradeExec();
+	std::string		getName();
+	bool			getSigned();
+	int				getGradeSign();
+	int				getGradeExec();
+	void			beSigned(const Bureaucrat& b);
 	Form& operator=(const Form& other);
 	~Form();
 };
 
-Form::Form(): signed(false), name("Default"), grade_sign(75), grade_exec(30) { }
-
-Form::Form(const Form& other)
+void Form::beSigned(const Bureaucrat& b)
 {
-	std::cout << "Form copy constructor "
+	if (b.getGrade() > grade_sign)
+		throw Form::GradeTooLowException();
+	is_signed = true;
+}
+
+std::ostream& operator<<(std::ostream& os, const Form& f)
+{
+	os << f.getName() << ", form sign grade " << f.getGradeSign() << ", form exec grade " << f.getGradeExec() << ", is signed - " << f.getSigned();
+	return os;
+}
+
+Form::Form(): is_signed(false), name("Default"), grade_sign(75), grade_exec(30) { }
+
+Form::Form(const Form& other): is_signed(false), name("Default"), grade_sign(75), grade_exec(30)
+{
+	std::cout << "Form copy constructor\n";
 	*this = other;
 }
 
-Form& Form::operator=(const Form& other)
+Form::Form(const std::string _name, const int _grade_sign, const int _grade_exec): is_signed(false)
 {
-
+	if (_grade_sign > 150 || _grade_exec > 150)`
+		throw Form::GradeTooLowException();
+	if (_grade_sign < 1 || _grade_exec < 1)
+		throw Form::GradeTooHighException();
+	name = _name;
+	grade_exec = _grade_exec;
+	grade_sign = _grade_sign;
 }
 
-bool Form::getSigned()
-{
-
-}
-
-const std::string Form::getName()
-{
-	return name;
-}
-
-const int Form::getGradeSign()
-{
-	return grade_sign;
-}
-
-const int Form::getGradeExec()
-{
-	return grade_exec;
-}
-
-
-Form::~Form()
-{
-}
