@@ -80,5 +80,6 @@
 		"filesystem": "cpp"
 	},
 	"editor.insertSpaces": false,
-	"editor.detectIndentation": false
+	"editor.detectIndentation": false,
+	"C_Cpp.errorSquiggles": "disabled"
 }

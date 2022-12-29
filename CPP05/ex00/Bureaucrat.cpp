@@ -31,14 +31,14 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 	return *this;
 }
 
-char *Bureaucrat::GradeTooHighException::what()
+const char *Bureaucrat::GradeTooHighException::what() const _NOEXCEPT
 {
-	return (char *)"Grade too high";
+	return "Grade too high";
 }
 
-char *Bureaucrat::GradeTooLowException::what()
+const char *Bureaucrat::GradeTooLowException::what() const _NOEXCEPT
 {
-	return (char *)"Grade too low";
+	return "Grade too low";
 }
 
 void Bureaucrat::increment(void)

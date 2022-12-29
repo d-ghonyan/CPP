@@ -7,8 +7,8 @@ class Bureaucrat
 private:
 	int		grade;
 	const	std::string	name;
-	class	GradeTooHighException : public std::exception { char *what (); };
-	class	GradeTooLowException : public std::exception { char *what (); };
+	class	GradeTooHighException : public std::exception { const char *what () const _NOEXCEPT; };
+	class	GradeTooLowException : public std::exception { const char *what () const _NOEXCEPT; };
 public:
 	Bureaucrat();
 	Bureaucrat(std::string, int grade);
