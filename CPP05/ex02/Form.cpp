@@ -30,7 +30,7 @@ std::ostream& operator<<(std::ostream& os, const Form& f)
 	return os;
 }
 
-Form::Form(): is_signed(false), name("Default"), grade_sign(75), grade_exec(30) { }
+Form::Form(): is_signed(false), name("Default"), grade_sign(75), grade_exec(30) { std::cout << "Form default constructor called!\n"; }
 
 Form::Form(const Form& other): is_signed(false), name("Default"), grade_sign(75), grade_exec(30)
 {

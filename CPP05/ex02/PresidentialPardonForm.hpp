@@ -1,19 +1,27 @@
+#pragma once
+
 #include "Form.hpp"
 #include <iostream>
 
 class PresidentialPardonForm : public Form
 {
 private:
-	const int grade_sign, grade_exec;
 	std::string target;
+	const int grade_sign, grade_exec;
 public:
 	PresidentialPardonForm();
 	PresidentialPardonForm(std::string _target);
-	PresidentialPardonForm(const PresidentialPardonForm other);
+	PresidentialPardonForm(const PresidentialPardonForm& other);
 	PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
-	std::string getTarget();
+	void execute(Bureaucrat const & executor) const ;
+	std::string getTarget() const ;
 	~PresidentialPardonForm();
 };
+
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const
+{
+	(void)executor;
+}
 
 PresidentialPardonForm::PresidentialPardonForm(): target("Default"), grade_sign(25), grade_exec(5)
 {
@@ -25,7 +33,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string _target): target(_tar
 	std::cout << "PresidentialPardonForm constructor called!\n";
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm other)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other): Form(), target(other.getTarget()), grade_sign(25), grade_exec(5)
 {
 	std::cout << "PresidentialPardonForm copy constructor called!\n";
 	*this = other;
@@ -37,7 +45,7 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 	return *this;
 }
 
-std::string PresidentialPardonForm::getTarget()
+std::string PresidentialPardonForm::getTarget() const
 {
 	return target;
 }
