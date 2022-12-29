@@ -11,6 +11,7 @@ private:
 	class	GradeTooLowException : public std::exception { const char *what () const throw(); };
 public:
 	Form();
+	Form(const std::string name, const int grade_sign, const int grade_exec;);
 	Form(const Form& other);
 	bool	getSigned();
 	int		getName();
@@ -20,13 +21,12 @@ public:
 	~Form();
 };
 
-Form::Form()
-{
-}
+Form::Form(): signed(false), name("Default"), grade_sign(75), grade_exec(30) { }
 
 Form::Form(const Form& other)
 {
-
+	std::cout << "Form copy constructor "
+	*this = other;
 }
 
 Form& Form::operator=(const Form& other)
@@ -34,24 +34,24 @@ Form& Form::operator=(const Form& other)
 
 }
 
-bool	Form::getSigned()
+bool Form::getSigned()
 {
 
 }
 
-int		Form::getName()
+const std::string Form::getName()
 {
-
+	return name;
 }
 
-int		Form::getGradeSign()
+const int Form::getGradeSign()
 {
-
+	return grade_sign;
 }
 
-int		Form::getGradeExec()
+const int Form::getGradeExec()
 {
-
+	return grade_exec;
 }
 
 
