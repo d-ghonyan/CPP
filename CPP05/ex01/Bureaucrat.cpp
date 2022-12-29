@@ -20,7 +20,7 @@ int	Bureaucrat::getGrade() const
 	return grade;
 }
 
-void Bureaucrat::signForm(const Form& form)
+void Bureaucrat::signForm( Form& form)
 {
 	try
 	{
@@ -74,7 +74,6 @@ void Bureaucrat::decrement(void)
 		throw Bureaucrat::GradeTooLowException();
 	grade++;
 }
-
 
 const std::string	Bureaucrat::getName() const
 {

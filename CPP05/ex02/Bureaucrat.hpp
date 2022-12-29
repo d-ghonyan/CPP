@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+class Form;
+
 class Bureaucrat
 {
 private:
@@ -18,7 +20,7 @@ public:
 	int	getGrade() const;
 	void increment(void);
 	void decrement(void);
-	void signForm();
+	void signForm(Form& form);
 	~Bureaucrat();
 }; 
 
