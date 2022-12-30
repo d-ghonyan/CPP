@@ -26,3 +26,5 @@ public:
 	Form& operator=(const Form& other);
 	~Form();
 };
+
+std::ostream& operator<<(std::ostream& os, const Form& f);

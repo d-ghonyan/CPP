@@ -18,7 +18,7 @@ clean:
 	rm -f *.o
 
 fclean: clean
-	rm -f $(NAME) $(NAME).exe
+	rm -f $(NAME) $(NAME).exe *_shrubbery
 
 re: fclean all
 

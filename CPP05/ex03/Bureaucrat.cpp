@@ -1,17 +1,31 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(): grade(150), name("Default")
 {
-	std::cout << "Constructor called\n";
+	std::cout << "Bureaucrat Constructor called\n";
 }
 
 Bureaucrat::Bureaucrat(std::string _name, int _grade): grade(_grade), name(_name)
 {
 	if (grade < 1)
-		throw Bureaucrat::GradeTooLowException();
-	if (grade > 150)
 		throw Bureaucrat::GradeTooHighException();
-	std::cout << "Constructor called\n";
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	std::cout << "Bureaucrat constructor called\n";
+}
+
+void Bureaucrat::executeForm(Form const& form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << name << " executed " << form.getName() << "\n";
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << name << " couldn't execute " << form.getName() << " because " << e.what() << '\n';
+	}
 }
 
 int	Bureaucrat::getGrade() const
@@ -19,9 +33,22 @@ int	Bureaucrat::getGrade() const
 	return grade;
 }
 
+void Bureaucrat::signForm(Form& form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << name << " signed " << form.getName() << "\n";
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << name << " couldn't sign " << form.getName() <<  " because " << e.what() << "\n";
+	}
+}
+
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
 {
-	std::cout << "Copy Constructor called\n";
+	std::cout << "Bureaucrat Copy Constructor called\n";
 	*this = other;
 }
 
@@ -50,17 +77,16 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 void Bureaucrat::increment(void)
 {
 	if (grade == 1)
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooHighException();
 	grade--;
 }
 
 void Bureaucrat::decrement(void)
 {
 	if (grade == 150)
-		throw Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooLowException();
 	grade++;
 }
-
 
 const std::string	Bureaucrat::getName() const
 {
@@ -69,5 +95,5 @@ const std::string	Bureaucrat::getName() const
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor called\n";
+	std::cout << "Bureaucrat Destructor called\n";
 }

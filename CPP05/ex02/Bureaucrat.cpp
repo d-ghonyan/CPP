@@ -15,12 +15,25 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade): grade(_grade), name(_name
 	std::cout << "Bureaucrat constructor called\n";
 }
 
+void Bureaucrat::executeForm(Form const& form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << name << " executed " << form.getName() << "\n";
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << name << " couldn't execute " << form.getName() << " because " << e.what() << '\n';
+	}
+}
+
 int	Bureaucrat::getGrade() const
 {
 	return grade;
 }
 
-void Bureaucrat::signForm( Form& form)
+void Bureaucrat::signForm(Form& form)
 {
 	try
 	{
