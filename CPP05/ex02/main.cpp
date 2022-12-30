@@ -6,60 +6,59 @@
 
 int main()
 {
-	// Form *a = new ShrubberyCreationForm();
-
-	// a->beSigned(b);
-	// a->execute(b);
-	// std::cout << a->getGradeExec() << "\n";
-	// delete a;
-
-
-
 	Bureaucrat b = Bureaucrat("hello", 145);
 
-	Form *shrub = new ShrubberyCreationForm();
-
-	std::cout << *shrub << "\n";
-
-	shrub->beSigned(b);
-
-	b.executeForm(*shrub);
-	// RobotomyRequestForm ab;
-	// std::cout << "Sign: " << ab.getGradeSign() << ", Exec: " << ab.getGradeExec() << "\n";
-
-	// try
-	// {
-	// 	ab.beSigned(b);
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cerr << "Exception: " << e.what() << '\n';
-	// }
+	Form *a = new ShrubberyCreationForm();
 	
-	// try
-	// {
-	// 	ab.execute(b);
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cerr << "Execution: " << e.what() << '\n';
-	// }
-	
-	// PresidentialPardonForm abc;
+	std::cout << *a << "\n";
+	try
+	{
+		a->beSigned(b);
+		std::cout << "Signed!\n";
+		a->execute(b);
+		std::cout << "Executed!\n";
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Exception caught : " << e.what() << '\n';
+	}
 
-	// abc.beSigned(b);
-	// abc.execute(b);
-	// try
-	// {
-	// 	Bureaucrat a("asjkdhasd", 150);
-	// 	std::cout << a << "\n";
-	// 	std::cout << a.getGrade() << "\n";
-	// 	std::cout << a.getName() << "\n";
-	// 	a.increment();
-	// 	std::cout << a.getGrade() << "\n";
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
+	delete a;
+
+	Form *rob = new RobotomyRequestForm();
+
+	try
+	{
+		std::cout << *rob << "\n";
+
+		rob->beSigned(b);
+		std::cout << "Robot Signed!\n";
+		b.executeForm(*rob);
+		std::cout << "Robot Executed!\n";
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Exception caught : " << e.what() << '\n';
+	}
+
+	Bureaucrat buwuehfiwed("Barev", 12);
+
+	PresidentialPardonForm abc(buwuehfiwed.getName());
+
+	while (buwuehfiwed.getGrade() != abc.getGradeExec()) buwuehfiwed.increment();
+
+	std::cout << buwuehfiwed.getGrade() << "\n";
+	std::cout << abc << "\n";
+	try
+	{
+		abc.beSigned(buwuehfiwed);
+		std::cout << "Pardon signed!\n";
+		abc.execute(buwuehfiwed);
+		std::cout << "Pardon executed!\n";
+		buwuehfiwed.executeForm(abc);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Pardon Exception caught : " << e.what() << '\n';
+	}
 }

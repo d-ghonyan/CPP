@@ -22,7 +22,6 @@ public:
 	int				getGradeSign() const ;
 	int				getGradeExec() const ;
 	void			beSigned(const Bureaucrat& b);
-	virtual void	execute(Bureaucrat const& executor) = 0;
 	Form& operator=(const Form& other);
 	~Form();
 };

@@ -1,18 +1,21 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
 	try
 	{
-		Bureaucrat a("asjkdhasd", 150);
-		std::cout << a << "\n";
-		std::cout << a.getGrade() << "\n";
-		std::cout << a.getName() << "\n";
-		a.increment();
-		std::cout << a.getGrade() << "\n";
+		Form hello;
+		Form hello2("kov", 123, 1);
+
+		std::cout << hello << "\n";
+		std::cout << hello2 << "\n";
+		hello2.beSigned(Bureaucrat("Debil", 1));
+		std::cout << hello2 << "\n";
+		hello2.beSigned(Bureaucrat("Debil", 124));
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Exception caught: " << e.what() << '\n';
 	}
 }
