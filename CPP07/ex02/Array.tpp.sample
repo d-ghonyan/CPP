@@ -1,0 +1,46 @@
+#include "Array.hpp"
+
+Array::Array(): arr(nullptr), cap(0) { }
+
+Array::Array(size_t n): cap(n)
+{
+	arr = new T[n];
+	for (size_t i = 0; i < cap; i++)
+		arr[i] = T();
+}
+
+Array::Array(const Array& other): arr(nullptr)
+{
+	*this = other;
+}
+
+Array& Array::operator=(const Array& other)
+{
+	if (this == &other)
+		return *this;
+
+	delete arr;
+
+	arr = new T[other.size()];
+	cap = other.size();
+	for (size_t i = 0; i < cap; i++)
+		arr[i] = T();
+	return *this;
+}
+
+T Array::operator[](size_t n)
+{
+	if (n >= cap)
+		throw std::out_of_range();
+	return arr[n];
+}
+
+size_t Array::size() const 
+{
+	return cap;
+}
+
+Array::~Array()
+{
+	delete arr;
+}

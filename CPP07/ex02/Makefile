@@ -1,7 +1,7 @@
 UNAME = $(shell uname -s)
 CXX = c++
-NAME = data
-SRCS = $(wildcard *.cpp)
+NAME = array
+SRCS = $(wildcard *.cpp *.tpp)
 OBJS = $(SRCS:.cpp=.o)
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
