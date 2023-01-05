@@ -6,7 +6,7 @@
 
 int main()
 {
-	Bureaucrat b = Bureaucrat("hello", 145);
+	Bureaucrat b = Bureaucrat("hello", 1);
 
 	Form *a = new ShrubberyCreationForm();
 	
