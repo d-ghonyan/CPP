@@ -13,8 +13,8 @@ int main(int argc, char **argv)
 	for (int i = 0; i < 100; ++i)
 		a.push_back(i);
 	std::cout << *(a.end() - 1) << "\n";
-	std::cout << *(easyfind< std::vector >(a, 50)) << "\n";
+	std::cout << *(easyfind(a, 50)) << "\n";
 
-	if (easyfind< std::vector >(a, 13123123) == a.end())
+	if (easyfind(a, 13123123) == a.end())
 		std::cout << "not found\n";
 }
