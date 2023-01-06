@@ -1,6 +1,6 @@
 UNAME = $(shell uname -s)
 CXX = c++
-NAME = smm
+NAME = stack
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

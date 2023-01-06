@@ -9,16 +9,21 @@ class Span
 private:
 	size_t size;
 	std::vector<int> arr;
-	std::vector::iterator begin;
-	std::vector::iterator end;
+	size_t getsize() const;
 public:
+
+	typedef std::vector<int>::const_iterator iterator;
+
 	Span();
 	Span(size_t n);
 	Span(const Span& other);
 	void addNumber(int num);
-	void addNumberIt(std::vector::iterator begin);
-	int longestSpan();
-	int shortestSpan();
+	void addNumberIt(std::vector<int>::iterator begin,
+			std::vector<int>::iterator end, int num);
+	std::vector<int>::iterator begin();
+	std::vector<int>::iterator end();
+	int longestSpan() const ;
+	int shortestSpan() const ;
 	Span& operator=(const Span& other);
 	~Span();
 };
