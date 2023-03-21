@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <cctype>
 
-#define CSV_PATH "cpp_09/data.csv"
+#define CSV_PATH "../cpp_09/data.csv"
 
 struct isEqual
 {
@@ -27,7 +27,7 @@ std::vector< std::pair<std::string, std::string> > readFile(std::string filename
 
 	if (file.fail())
 	{
-		std::cout << "ax\n";
+		perror("");
 		exit(1);
 	}
 
@@ -75,12 +75,11 @@ std::string trim(std::string to_trim)
 void printExchangeRate(std::string filename, char delim, std::vector< std::pair<std::string, std::string> > pairs)
 {
 	struct tm tm;
-	const char *date;
 	std::ifstream file(filename);
 
 	if (file.fail())
 	{
-		std::cout << "ax\n";
+		perror("");
 		exit(1);
 	}
 	
@@ -123,16 +122,11 @@ void printExchangeRate(std::string filename, char delim, std::vector< std::pair<
 
 int	main(int argc, char **argv)
 {
-	// std::vector<std::string> lines;
 	std::vector< std::pair<std::string, std::string> > database;
 	std::vector< std::pair<std::string, std::string> > input;
 
 	if (argc < 2)
 		return 0;
-
-	const char *a = argv[1];
-
-	struct tm tm;
 
 	database = readFile(CSV_PATH, ',');
 
