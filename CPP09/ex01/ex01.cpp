@@ -1,21 +1,10 @@
 #include <iostream>
 #include <deque>
 #include <sstream>
+#include <errno.h>
 
-int	argv_check(std::string s)
-{
-	std::string valid("0123456789+-*/ ");
-
-	for (size_t i = 0; i < s.size(); ++i)
-	{
-		if (valid.find(s[i]) == std::string::npos)
-		{
-			std::cerr << "Error: you're dumb\n";
-			return 69;
-		}
-	}
-	return 0;
-}
+long str2int (std::string str);
+int	argv_check(std::string s);
 
 int main(int argc, char **argv)
 {
@@ -27,9 +16,12 @@ int main(int argc, char **argv)
 
 	std::string a;
 
-	while (std::getline(stream, a, ' ')) {nums.push_back(a);}
+	while (std::getline(stream, a, ' ')) {if (a.size()) nums.push_back(a);}
 
 	std::deque<std::string> temp;
+
+	if (nums.size() == 0)
+		return 0;
 
 	while (nums.size() != 1)
 	{
@@ -49,12 +41,12 @@ int main(int argc, char **argv)
 
 		try
 		{
-			i = std::stoi(temp.front()); temp.pop_front();
-			j = std::stoi(temp.front());
+			i = str2int(temp.front()); temp.pop_front();
+			j = str2int(temp.front());
 		}
-		catch (std::exception& e)
+		catch (const char *e)
 		{
-			std::cerr << "Error: " << e.what() << "\n";
+			std::cerr << "Error: " << e << "\n";
 			return (68 + 1);
 		}
 
@@ -70,5 +62,6 @@ int main(int argc, char **argv)
 			nums.push_front(std::to_string(j / i));
 		temp.pop_front();
 	}
-	std::cout << nums.front() << "\n";
+	try { std::cout << str2int(nums.front()) << "\n"; }
+	catch (const char *e) { std::cerr << "Error: " << e << '\n'; }
 }

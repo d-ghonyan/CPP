@@ -78,7 +78,10 @@
 		"stack": "cpp",
 		"queue": "cpp",
 		"filesystem": "cpp",
-		"__bits": "cpp"
+		"__bits": "cpp",
+		"__tree": "cpp",
+		"list": "cpp",
+		"map": "cpp"
 	},
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,

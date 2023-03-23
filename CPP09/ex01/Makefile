@@ -1,9 +1,9 @@
 UNAME = $(shell uname -s)
 CXX = c++
-NAME = RPM
+NAME = RPN
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 ifneq ($(UNAME), Darwin)
 	CXXFLAGS = -Wall -Wextra -Werror -std=c++11
