@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <climits>
 
 long str2int (std::string str)
 {

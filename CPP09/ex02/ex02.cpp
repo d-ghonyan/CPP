@@ -50,7 +50,6 @@ void merge_sort_vector(std::vector<int> nums)
 		std::cout << a[i] << " ";
 	}
 	std::cout << "\n";
-
 }
 
 void insertion_sort(std::vector<int>& nums)
@@ -66,6 +65,42 @@ void insertion_sort(std::vector<int>& nums)
 	}
 }
 
+void	bin(std::vector<int> nums, std::vector<int> to_sort)
+{
+	int size = nums.size() / 2;
+
+	int mid = size;
+	for (size_t i = 0; i < to_sort.size(); )
+	{
+		//for (size_t j = 0; j < nums.size(); ++j)
+		//{
+			std::cout << mid << "\n";
+			if (to_sort[i] > nums[mid] && to_sort[i] < nums[mid + 1])
+			{
+				nums.insert(nums.begin() + mid + 1, to_sort[i]);
+				mid = size;
+				++i;
+			}
+			else if (to_sort[i] > nums[mid])
+			{
+				mid = mid + mid / 2;
+			}
+			else if (to_sort[i] < nums[mid])
+			{
+				mid = mid - mid / 2;
+			}
+		//}
+	}
+
+	std::vector<int> a = nums;
+	for (size_t i = 0; i < a.size(); i++)
+	{
+		std::cout << a[i] << " ";
+	}
+	std::cout << "\n";
+
+}
+
 int main(int argc, char **argv)
 {
 	std::vector<int> nums;
@@ -75,18 +110,8 @@ int main(int argc, char **argv)
 	
 	for (size_t i = 1; argv[i]; ++i) { nums.push_back(str2int(argv[i])); }
 
-	insertion_sort(nums);
-
-	for (size_t i = 0; i < nums.size(); i++)
-	{
-		if (i < nums.size() - 1 && nums[i] > nums[i] + 1)
-		{
-			std::cout << "FUCK\n" << "\n\n\n\n\n\n";
-			return (1);
-		}
-		std::cout << nums[i] << " ";
-	}
 	std::cout << "\n";
-	// merge_sort_vector(nums);
+	//merge_sort_vector(nums);
 
+	bin(std::vector<int>{-1, 0, 1, 2}, std::vector<int>{3, 7, 50});
 }
