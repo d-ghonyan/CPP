@@ -30,7 +30,7 @@ void merge_sort_vector(std::vector<int> nums)
 			temp.push_back(nums[i * 2 + 1]);
 		merge.push_back(temp);
 	}
-`
+
 	std::vector<int> a;
 	for (size_t i = 0; i < merge.size(); i++)
 	{
@@ -53,6 +53,19 @@ void merge_sort_vector(std::vector<int> nums)
 
 }
 
+void insertion_sort(std::vector<int>& nums)
+{
+	for (size_t i = 1; i < nums.size(); ++i)
+	{
+		int j = i;
+		while (j > 0 && nums[j] < nums[j - 1])
+		{
+			swap(nums[j], nums[j - 1]);
+			j--;
+		}
+	}
+}
+
 int main(int argc, char **argv)
 {
 	std::vector<int> nums;
@@ -62,12 +75,18 @@ int main(int argc, char **argv)
 	
 	for (size_t i = 1; argv[i]; ++i) { nums.push_back(str2int(argv[i])); }
 
-	merge_sort_vector(nums);
+	insertion_sort(nums);
 
-	// for (size_t i = 0; i < nums.size(); i++)
-	// {
-	// 	std::cout << nums[i] << "\n";
-	// }
+	for (size_t i = 0; i < nums.size(); i++)
+	{
+		if (i < nums.size() - 1 && nums[i] > nums[i] + 1)
+		{
+			std::cout << "FUCK\n" << "\n\n\n\n\n\n";
+			return (1);
+		}
+		std::cout << nums[i] << " ";
+	}
+	std::cout << "\n";
+	// merge_sort_vector(nums);
 
-	
 }
