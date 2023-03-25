@@ -67,29 +67,35 @@ void insertion_sort(std::vector<int>& nums)
 
 void	bin(std::vector<int> nums, std::vector<int> to_sort)
 {
-	int size = nums.size() / 2;
+	size_t size = (nums.size() - 1) / 2;
 
-	int mid = size;
+	size_t mid = size;
 	for (size_t i = 0; i < to_sort.size(); )
 	{
-		//for (size_t j = 0; j < nums.size(); ++j)
-		//{
-			std::cout << mid << "\n";
-			if (to_sort[i] > nums[mid] && to_sort[i] < nums[mid + 1])
-			{
-				nums.insert(nums.begin() + mid + 1, to_sort[i]);
-				mid = size;
-				++i;
-			}
-			else if (to_sort[i] > nums[mid])
-			{
-				mid = mid + mid / 2;
-			}
-			else if (to_sort[i] < nums[mid])
-			{
-				mid = mid - mid / 2;
-			}
-		//}
+		std::cout << mid << "\n";
+		std::cout << to_sort[i] << "\n";
+		if (mid >= nums.size())
+			mid = nums.size() - 1;
+		if ((to_sort[i] > nums[mid] && mid < nums.size() && to_sort[i] < nums[mid + 1]))
+		{
+			nums.insert(nums.begin() + mid + 1, to_sort[i]);
+			mid = nums.size() / 2;
+			++i;
+		}
+		else if (mid == nums.size() - 1 || mid == 0)
+		{
+			nums.insert(nums.begin() + mid + 1 - (mid == 0), to_sort[i]);
+			mid = nums.size() / 2;
+			++i;
+		}
+		else if (to_sort[i] > nums[mid])
+		{
+			mid = mid + mid / 2 + (mid == 1);
+		}
+		else if (to_sort[i] < nums[mid])
+		{
+			mid = mid - mid / 2 - (mid == 1);
+		}
 	}
 
 	std::vector<int> a = nums;
@@ -99,6 +105,18 @@ void	bin(std::vector<int> nums, std::vector<int> to_sort)
 	}
 	std::cout << "\n";
 
+}
+
+void	bin_2(std::vector<int> nums, std::vector<int> to_sort)
+{
+	size_t mid = nums.size() / 2;
+	size_t end = nums.size() - 1;
+	size_t start = 0;
+
+	for (size_t i = 0; i < to_sort.size(); )
+	{
+		
+	}
 }
 
 int main(int argc, char **argv)
@@ -113,5 +131,5 @@ int main(int argc, char **argv)
 	std::cout << "\n";
 	//merge_sort_vector(nums);
 
-	bin(std::vector<int>{-1, 0, 1, 2}, std::vector<int>{3, 7, 50});
+	bin(nums, std::vector<int>{3, 50, 60});
 }
