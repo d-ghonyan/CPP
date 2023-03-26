@@ -115,7 +115,7 @@ void	bin_2(std::vector<int> nums, std::vector<int> to_sort)
 
 	for (size_t i = 0; i < to_sort.size(); )
 	{
-		
+			
 	}
 }
 
@@ -131,5 +131,8 @@ int main(int argc, char **argv)
 	std::cout << "\n";
 	//merge_sort_vector(nums);
 
-	bin(nums, std::vector<int>{3, 50, 60});
+	int arr[] = {2,5,8,11,14};
+	std::vector<int> hello(arr, arr+5);
+
+	bin(nums, hello);
 }
