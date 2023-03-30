@@ -1,6 +1,35 @@
 #include <cstdlib>
 #include <iostream>
 #include <climits>
+#include <vector>
+void print(std::vector<int> nums)
+{
+	for (size_t i = 0; i < nums.size(); i++)
+	{
+		std::cout << nums[i] << " ";
+	}
+	std::cout << "\n";
+}
+
+void print(std::vector < std::vector<int> > nums)
+{
+	for (size_t i = 0; i < nums.size(); i++)
+	{
+		std::cout << nums[i][0] << " ";
+		if (nums[i].size() == 2)
+			std::cout << nums[i][1] << " ";
+		std::cout << "\n";
+	}
+}
+
+void swap(int &a, int &b)
+{
+	int temp = a;
+
+	a = b;
+
+	b = temp;
+}
 
 long str2int (std::string str)
 {

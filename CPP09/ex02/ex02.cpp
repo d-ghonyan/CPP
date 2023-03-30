@@ -3,54 +3,9 @@
 
 long str2int (std::string str);
 int	argv_check(char **argv);
-
-void swap(int &a, int &b)
-{
-	int temp = a;
-
-	a = b;
-
-	b = temp;
-}
-
-void merge_sort_vector(std::vector<int> nums)
-{
-	size_t size = nums.size() / 2 + (nums.size() % 2);
-	
-	std::vector < std::vector<int> > merge;
-
-	std::cout << size << "\n";
-
-	for (size_t i = 0; i < size; ++i)
-	{
-		std::vector<int> temp;
-
-		temp.push_back(nums[i * 2]);
-		if (i != size - 1 || nums.size() % 2 == 0)
-			temp.push_back(nums[i * 2 + 1]);
-		merge.push_back(temp);
-	}
-
-	std::vector<int> a;
-	for (size_t i = 0; i < merge.size(); i++)
-	{
-		if (merge[i].size() > 1 && merge[i][0] > merge[i][1])
-			swap(merge[i][0], merge[i][1]);
-		a.push_back(merge[i][0]);
-		for (size_t j = 0; j < merge[i].size(); j++)
-		{
-			std::cout << merge[i][j] << " ";
-		}
-		std::cout << " | ";
-	}
-	std::cout << "\n";
-
-	for (size_t i = 0; i < a.size(); i++)
-	{
-		std::cout << a[i] << " ";
-	}
-	std::cout << "\n";
-}
+void swap(int &a, int &b);
+void print(std::vector<int>  nums);
+void print(std::vector < std::vector<int> > nums);
 
 void insertion_sort(std::vector<int>& nums)
 {
@@ -107,16 +62,35 @@ void	bin(std::vector<int> nums, std::vector<int> to_sort)
 
 }
 
-void	bin_2(std::vector<int> nums, std::vector<int> to_sort)
+void merge_sort_vector(std::vector<int> nums)
 {
-	size_t mid = nums.size() / 2;
-	size_t end = nums.size() - 1;
-	size_t start = 0;
+	std::vector<int> a;
+	std::vector<int> b;
+	size_t size = nums.size() / 2 + (nums.size() % 2);
+	
+	std::vector < std::vector<int> > merge;
 
-	for (size_t i = 0; i < to_sort.size(); )
+	std::cout << size << "\n";
+
+	for (size_t i = 0; i < size; ++i)
 	{
-			
+		std::vector<int> temp;
+
+		temp.push_back(nums[i * 2]);
+		if (i != size - 1 || nums.size() % 2 == 0)
+		{
+			temp.push_back(nums[i * 2 + 1]);
+			if (temp[0] > temp[1])
+				swap(temp[0], temp[1]);
+			a.push_back(temp[1]);
+			b.push_back(temp[0]);
+		}
+		merge.push_back(temp);
 	}
+
+	print(merge);
+	print(a);
+	print(b);
 }
 
 int main(int argc, char **argv)
@@ -129,10 +103,5 @@ int main(int argc, char **argv)
 	for (size_t i = 1; argv[i]; ++i) { nums.push_back(str2int(argv[i])); }
 
 	std::cout << "\n";
-	//merge_sort_vector(nums);
-
-	int arr[] = {2,5,8,11,14};
-	std::vector<int> hello(arr, arr+5);
-
-	bin(nums, hello);
+	merge_sort_vector(nums);
 }
