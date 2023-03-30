@@ -3,10 +3,10 @@ CXX = c++
 NAME = PmergeMe
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -std=c++98#-Wall -Wextra -Werror 
 
 ifneq ($(UNAME), Darwin)
-	CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+	CXXFLAGS = -std=c++11
 endif
 
 all: $(NAME)

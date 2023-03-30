@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 long str2int (std::string str);
 int	argv_check(char **argv);
@@ -20,77 +21,58 @@ void insertion_sort(std::vector<int>& nums)
 	}
 }
 
-void	bin(std::vector<int> nums, std::vector<int> to_sort)
+int	is_sorted(std::vector<int> nums)
 {
-	size_t size = (nums.size() - 1) / 2;
-
-	size_t mid = size;
-	for (size_t i = 0; i < to_sort.size(); )
+	for (size_t i = 0; i < nums.size() - 1; ++i)
 	{
-		std::cout << mid << "\n";
-		std::cout << to_sort[i] << "\n";
-		if (mid >= nums.size())
-			mid = nums.size() - 1;
-		if ((to_sort[i] > nums[mid] && mid < nums.size() && to_sort[i] < nums[mid + 1]))
-		{
-			nums.insert(nums.begin() + mid + 1, to_sort[i]);
-			mid = nums.size() / 2;
-			++i;
-		}
-		else if (mid == nums.size() - 1 || mid == 0)
-		{
-			nums.insert(nums.begin() + mid + 1 - (mid == 0), to_sort[i]);
-			mid = nums.size() / 2;
-			++i;
-		}
-		else if (to_sort[i] > nums[mid])
-		{
-			mid = mid + mid / 2 + (mid == 1);
-		}
-		else if (to_sort[i] < nums[mid])
-		{
-			mid = mid - mid / 2 - (mid == 1);
-		}
+		if (nums[i] > nums[i + 1])
+			return 0;
 	}
-
-	std::vector<int> a = nums;
-	for (size_t i = 0; i < a.size(); i++)
-	{
-		std::cout << a[i] << " ";
-	}
-	std::cout << "\n";
-
+	return 1;
 }
 
-void merge_sort_vector(std::vector<int> nums)
+void kov(std::vector<int>& nums, std::vector<int> b)
 {
-	std::vector<int> a;
-	std::vector<int> b;
-	size_t size = nums.size() / 2 + (nums.size() % 2);
-	
-	std::vector < std::vector<int> > merge;
+	for (size_t i = 0; i < b.size(); ++i)
+	{
+		nums.insert(std::upper_bound(nums.begin(), nums.end(), b[i]), b[i]);
+	}
+}
 
-	std::cout << size << "\n";
+void merge_sort_vector(std::vector<int>& nums)
+{
+	int					unpaired;
+	std::vector<int>	a;
+	std::vector<int>	b;
+	size_t size = nums.size() / 2 + (nums.size() % 2);
+
+	unpaired = (nums.size() % 2 ? -1 : nums[nums[nums.size() - 1]]);
+
+	std::cout << "recursive size!" << size << "\n";
+
+	if (nums.size() == 2 || nums.size() == 3)
+	{
+		insertion_sort(nums);
+		return ;
+	}
 
 	for (size_t i = 0; i < size; ++i)
 	{
-		std::vector<int> temp;
-
-		temp.push_back(nums[i * 2]);
 		if (i != size - 1 || nums.size() % 2 == 0)
 		{
-			temp.push_back(nums[i * 2 + 1]);
-			if (temp[0] > temp[1])
-				swap(temp[0], temp[1]);
-			a.push_back(temp[1]);
-			b.push_back(temp[0]);
+			int n = nums[i * 2], m = nums[i * 2 + 1];
+			if (n > m)
+				swap(n, m);
+			a.push_back(m);
+			b.push_back(n);
 		}
-		merge.push_back(temp);
 	}
-
-	print(merge);
+	merge_sort_vector(a);
 	print(a);
 	print(b);
+	kov(a, b);
+	print(a);
+	nums = a;
 }
 
 int main(int argc, char **argv)
@@ -104,4 +86,5 @@ int main(int argc, char **argv)
 
 	std::cout << "\n";
 	merge_sort_vector(nums);
+	print(nums);
 }
