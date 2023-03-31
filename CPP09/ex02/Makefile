@@ -3,7 +3,7 @@ CXX = c++
 NAME = PmergeMe
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
-CXXFLAGS = -std=c++98#-Wall -Wextra -Werror 
+CXXFLAGS = -fsanitize=address -g3 -std=c++98#-Wall -Wextra -Werror 
 
 ifneq ($(UNAME), Darwin)
 	CXXFLAGS = -std=c++11
@@ -12,7 +12,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(OBJS) -o $(NAME)
+	$(CXX) -g3 -fsanitize=address $(OBJS) -o $(NAME)
 
 clean:
 	rm -f *.o

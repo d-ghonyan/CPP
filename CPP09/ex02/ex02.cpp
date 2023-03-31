@@ -46,9 +46,7 @@ void merge_sort_vector(std::vector<int>& nums)
 	std::vector<int>	b;
 	size_t size = nums.size() / 2 + (nums.size() % 2);
 
-	unpaired = (nums.size() % 2 ? -1 : nums[nums[nums.size() - 1]]);
-
-	std::cout << "recursive size!" << size << "\n";
+	unpaired = (nums.size() % 2 ? -1 : nums[nums.size() - 1]);
 
 	if (nums.size() == 2 || nums.size() == 3)
 	{
@@ -68,10 +66,10 @@ void merge_sort_vector(std::vector<int>& nums)
 		}
 	}
 	merge_sort_vector(a);
-	print(a);
-	print(b);
+	// print(a);
+	// print(b);
 	kov(a, b);
-	print(a);
+	// print(a);
 	nums = a;
 }
 
@@ -84,7 +82,7 @@ int main(int argc, char **argv)
 	
 	for (size_t i = 1; argv[i]; ++i) { nums.push_back(str2int(argv[i])); }
 
-	std::cout << "\n";
+	// std::cout << "\n";
 	merge_sort_vector(nums);
 	print(nums);
 }
