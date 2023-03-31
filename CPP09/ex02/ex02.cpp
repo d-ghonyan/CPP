@@ -31,11 +31,24 @@ int	is_sorted(std::vector<int> nums)
 	return 1;
 }
 
-void kov(std::vector<int>& nums, std::vector<int> b)
+void kov(std::vector<int>& nums, std::vector<int> b, int unpaired)
 {
+	int group = 1;
+	int power = 0;
+	int current_power = 2;
+	int next_power = 4;
+	int start_index = 0;
+	int end_index = 0;
+
 	for (size_t i = 0; i < b.size(); ++i)
 	{
-		nums.insert(std::upper_bound(nums.begin(), nums.end(), b[i]), b[i]);
+		if (group >= b.size())
+			group = b.size() - 1;
+		for (size_t j = group; j > end_index; j--)
+		{
+			nums.insert(std::upper_bound(nums.begin(), nums.end(), b[j]), b[j]);
+		}
+		group = 
 	}
 }
 
@@ -65,11 +78,10 @@ void merge_sort_vector(std::vector<int>& nums)
 			b.push_back(n);
 		}
 	}
+	if (unpaired != -1)
+		b.push_back(unpaired);
 	merge_sort_vector(a);
-	// print(a);
-	// print(b);
 	kov(a, b);
-	// print(a);
 	nums = a;
 }
 
