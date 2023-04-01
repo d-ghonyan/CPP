@@ -1,5 +1,6 @@
 #pragma once
 
+#include <list>
 #include <cmath>
 #include <ctime>
 #include <vector>
@@ -21,3 +22,5 @@ double	gettime(t_timeval start);
 void insert(std::vector<int>& nums, std::vector<int> b);
 void merge_sort_vector(std::vector<int>& nums);
 void insertion_sort(std::vector<int>& nums);
+void insertion_sort(std::list<int>& nums);
+void merge_sort_list(std::list<int>& nums);

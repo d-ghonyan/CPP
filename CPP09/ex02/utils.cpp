@@ -31,6 +31,28 @@ void insertion_sort(std::vector<int>& nums)
 	}
 }
 
+void insertion_sort(std::list<int>& nums)
+{
+	std::list<int>::iterator begin = nums.begin();
+
+	++begin;
+
+	for (std::list<int>::iterator it = begin; it != nums.end(); ++it)
+	{
+		std::list<int>::iterator j = it;
+		std::list<int>::iterator cp = j;
+
+		std::list<int>::iterator k = --cp;
+
+		while (j != nums.begin() && *j < *k)
+		{
+			std::cout << "hello\n";
+			swap(*j, *k);
+			--j;
+		}
+	}
+}
+
 void swap(int &a, int &b)
 {
 	int temp = a;
