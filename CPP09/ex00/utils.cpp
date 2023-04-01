@@ -39,11 +39,11 @@ float str2float (std::string str)
     return l;
 }
 
-std::list< std::pair<std::string, std::string> > readFile(std::string filename, char delim)
+std::map<std::string, std::string> readFile(std::string filename, char delim)
 {
 	struct tm tm;
 	std::ifstream file(filename);
-	std::list< std::pair<std::string, std::string> > pairs;
+	std::map<std::string, std::string> pairs;
 
 	if (file.fail())
 	{
@@ -56,35 +56,31 @@ std::list< std::pair<std::string, std::string> > readFile(std::string filename, 
 	{
 		std::istringstream sstream(line);
 
-		std::pair<std::string, std::string> pair;
+		std::string first, second;
 
-		std::getline(sstream, pair.first, delim);
-		std::getline(sstream, pair.second, delim);
+		std::getline(sstream, first, delim);
+		std::getline(sstream, second, delim);
 		
-		if ((!pair.first[0] && pair.second[0]) || (!pair.second[0] && pair.first[0]))
+		if ((!first[0] && second[0]) || (!second[0] && first[0]))
 		{
 			std::cerr << "Error: empty values in database\n";
 			exit (67);
 		}
-		else if (pair.first != "date" && pair.first[0] && !strptime(pair.first.c_str(), "%Y-%m-%d", &tm))
+		else if (first != "date" && first[0] && !strptime(first.c_str(), "%Y-%m-%d", &tm))
 		{
-			std::cerr << "Error: invalid dates in database: " << pair.first << "\n";
+			std::cerr << "Error: invalid dates in database: " << first << "\n";
 			exit (68);
 		}
 
-		pairs.push_back(pair);
+		pairs[first] = second;
 	}
 	return pairs;
 }
 
-bool isequal(std::pair<std::string, std::string> pair)
+float	getExchangeRate(std::string date, std::map<std::string, std::string> pairs)
 {
-	return pair.first == "";
-}
+	std::map<std::string, std::string>::iterator it = pairs.find(date);
 
-float	getExchangeRate(std::string date, std::list< std::pair<std::string, std::string> > pairs)
-{
-	std::list< std::pair<std::string, std::string> >::iterator it = std::find_if(pairs.begin(), pairs.end(), isEqual(date));
 	if (it == pairs.end())
 		return (-1);
 	return str2float((*it).second);
@@ -94,11 +90,10 @@ std::string trim(std::string to_trim)
 {
 	std::string ret;
 
-	size_t	j = -1;
 	for (size_t i = 0; i < to_trim.size(); ++i)
 	{
 		if (!(::isspace(to_trim[i])))
-			ret[++j] = to_trim[i];
+			ret.push_back(to_trim[i]);
 	}
 	return ret.c_str();
 }

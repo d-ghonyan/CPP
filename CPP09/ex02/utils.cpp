@@ -1,7 +1,14 @@
-#include <cstdlib>
-#include <iostream>
-#include <climits>
-#include <vector>
+#include "ex02.hpp"
+
+double	gettime(t_timeval start)
+{
+	t_timeval	now;
+
+	gettimeofday(&now, NULL);
+	return (((double)((now.tv_sec - start.tv_sec) * 1000)
+		+ ((double)(now.tv_usec - start.tv_usec) / 1000)));
+}
+
 void print(std::vector<int> nums)
 {
 	for (size_t i = 0; i < nums.size(); i++)
@@ -11,14 +18,16 @@ void print(std::vector<int> nums)
 	std::cout << "\n";
 }
 
-void print(std::vector < std::vector<int> > nums)
+void insertion_sort(std::vector<int>& nums)
 {
-	for (size_t i = 0; i < nums.size(); i++)
+	for (size_t i = 1; i < nums.size(); ++i)
 	{
-		std::cout << nums[i][0] << " ";
-		if (nums[i].size() == 2)
-			std::cout << nums[i][1] << " ";
-		std::cout << "\n";
+		int j = i;
+		while (j > 0 && nums[j] < nums[j - 1])
+		{
+			swap(nums[j], nums[j - 1]);
+			j--;
+		}
 	}
 }
 
