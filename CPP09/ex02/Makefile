@@ -6,7 +6,7 @@ OBJS = $(SRCS:.cpp=.o)
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror #-fsanitize=address -g3 
 
 ifneq ($(UNAME), Darwin)
-	CXXFLAGS = -fsanitize=address -g3 -std=c++11
+	CXXFLAGS = -g3 -std=c++11
 endif
 
 all: $(NAME)

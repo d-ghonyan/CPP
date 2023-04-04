@@ -20,6 +20,9 @@ void printExchangeRate(std::string filename, char delim, std::map<Date, std::str
 		std::getline(sstream, first, delim);
 		std::getline(sstream, second, delim);
 
+		second = trim(second);
+		first = trim(first);
+		//std::cout << second << "\n";
 		if (!first[0] || !second[0])
 			std::cerr << "Error: empty values in file\n";
 		else
@@ -31,15 +34,16 @@ void printExchangeRate(std::string filename, char delim, std::map<Date, std::str
 
 				Date date(first);
 
+				std::cout.precision(5);
 				float mult = str2float(second);
-				float rate = getExchangeRate(trim(first), pairs);
+				float rate = getExchangeRate(first, pairs);
 
 				if (mult < 0 || mult > 1000)
 					std::cerr << "Error: out of range: " << mult << "\n";
 				else if (rate < 0)
 					std::cerr << "Error: not found in a database: " << first << "\n";
 				else
-					std::cout << first << " => " << getExchangeRate(trim(first), pairs) * mult << "\n";
+					std::cout << first << " => " << std::fixed << getExchangeRate(first, pairs) * mult << "\n";
 			}
 			catch(const std::exception& e)
 			{

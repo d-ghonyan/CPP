@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <climits>
 
 std::string trim(std::string to_trim);
 

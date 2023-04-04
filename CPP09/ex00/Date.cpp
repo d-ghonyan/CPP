@@ -61,7 +61,7 @@ const char *Date::InvalidDateException::what() const throw()
 
 const char *Date::DateOutOfRange::what() const throw()
 {
-	return "Error: out of range";
+	return "Error: date out of range";
 }
 
 void Date::parse_date()
@@ -72,7 +72,7 @@ void Date::parse_date()
 	m = str2int(month, 12);	
 	d = str2int(day, 31);	
 
-	if (year.size() != 4 || month.size() != 2 || day.size() != 2) { throw InvalidDateException(); }
+	if (year.size() < 4 || month.size() > 2 || day.size() > 2) { throw InvalidDateException(); }
 
 	check_range(y, m, d);
 }
