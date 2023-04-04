@@ -3,7 +3,7 @@ CXX = c++
 NAME = btc
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
+CXXFLAGS = -Wall -Wextra -std=c++98 -fsanitize=address -g3
 
 ifneq ($(UNAME), Darwin)
 	CXXFLAGS = -Wall -Wextra -Werror -std=c++11

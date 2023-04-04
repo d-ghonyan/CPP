@@ -1,5 +1,8 @@
 #include "ex00.hpp"
 
+const char *InvalidNumber::what() const throw() { return "Invalid number"; }
+const char *NumberOutOfRange::what() const throw() { return "Number out of range"; }
+
 bool is_float(std::string hello)
 {
 	size_t i = 0;
@@ -28,22 +31,19 @@ float str2float (std::string str)
 
     errno = 0;
 
-	if (!is_float(str))
-		throw "invalid argument";
+	if (!is_float(str)) { throw InvalidNumber(); }
 
     l = strtof(s, NULL);
-    if (errno == ERANGE) {
-        throw "out of range";
-    }
+
+    if (errno == ERANGE) { throw NumberOutOfRange(); }
 
     return l;
 }
 
-std::map<std::string, std::string> readFile(std::string filename, char delim)
+std::map<Date, std::string> readFile(std::string filename, char delim)
 {
-	struct tm tm;
 	std::ifstream file(filename);
-	std::map<std::string, std::string> pairs;
+	std::map<Date, std::string> pairs;
 
 	if (file.fail())
 	{
@@ -59,31 +59,51 @@ std::map<std::string, std::string> readFile(std::string filename, char delim)
 		std::string first, second;
 
 		std::getline(sstream, first, delim);
-		std::getline(sstream, second, delim);
 		
+		if (first == "date")
+			continue ;
+
+		std::getline(sstream, second, delim);
+
 		if ((!first[0] && second[0]) || (!second[0] && first[0]))
 		{
 			std::cerr << "Error: empty values in database\n";
 			exit (67);
 		}
-		else if (first != "date" && first[0] && !strptime(first.c_str(), "%Y-%m-%d", &tm))
-		{
-			std::cerr << "Error: invalid dates in database: " << first << "\n";
-			exit (68);
-		}
 
-		pairs[first] = second;
+		if (!first[0] && !second[0])
+			continue ;
+
+		try
+		{
+			pairs[first] = second;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << ": " << first << '\n';
+			exit(128);
+		}
 	}
 	return pairs;
 }
 
-float	getExchangeRate(std::string date, std::map<std::string, std::string> pairs)
+float	getExchangeRate(Date date, std::map<Date, std::string> pairs)
 {
-	std::map<std::string, std::string>::iterator it = pairs.find(date);
+	std::map<Date, std::string>::iterator it = pairs.begin();
 
-	if (it == pairs.end())
-		return (-1);
-	return str2float((*it).second);
+	while (it != pairs.end() && (*it).first <= date) { ++it; }
+
+	if (date < (*(pairs.begin())).first)
+	{
+		return -1;
+	}
+
+	if (it != pairs.end() && (*it).first == date)
+	{
+		return str2float((*(it)).second);
+	}
+
+	return str2float(((*(--it)).second));
 }
 
 std::string trim(std::string to_trim)

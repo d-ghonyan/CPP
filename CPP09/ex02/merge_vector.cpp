@@ -4,10 +4,8 @@ void insert(std::vector<int>& nums, std::vector<int> b)
 {
 	int n = 0;
 	int power = 0;
-	int start_index = 0;
-	int end_index = 0;
-
-	start_index = 0;
+	size_t start_index = 0;
+	size_t end_index = 0;
 
 	for (size_t i = 0; i < b.size();)
 	{
@@ -22,15 +20,18 @@ void insert(std::vector<int>& nums, std::vector<int> b)
 		if (start_index > b.size())
 			start_index = b.size();
 
-		for (int j = start_index - 1; j >= end_index; --j)
+		for (size_t j = start_index - 1; j >= end_index;)
 		{
 			nums.insert(std::upper_bound(nums.begin(), nums.end(), b[j]), b[j]);
 			++i;
+			if (j == 0)
+				break ;
+			--j;
 		}
 	}
 }
 
-void merge_sort_vector(std::vector<int>& nums)
+void merge_sort(std::vector<int>& nums)
 {
 	int					unpaired;
 	std::vector<int>	a;
@@ -58,7 +59,7 @@ void merge_sort_vector(std::vector<int>& nums)
 	}
 	if (unpaired != -1)
 		b.push_back(unpaired);
-	merge_sort_vector(a);
+	merge_sort(a);
 	insert(a, b);
 	nums = a;
 }

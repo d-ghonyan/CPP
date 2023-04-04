@@ -15,8 +15,12 @@
 
 #define CSV_PATH "../cpp_09/data.csv"
 
+#include "Date.hpp"
+
+class InvalidNumber : public std::exception { const char *what () const throw(); };
+class NumberOutOfRange : public std::exception { const char *what () const throw(); };
+
 float str2float (std::string str);
-std::map<std::string, std::string> readFile(std::string filename, char delim);
-bool isequal(std::pair<std::string, std::string> pair);
-float getExchangeRate(std::string date, std::map<std::string, std::string> pairs);
+std::map<Date, std::string> readFile(std::string filename, char delim);
+float getExchangeRate(Date date, std::map<Date, std::string> pairs);
 std::string trim(std::string to_trim);

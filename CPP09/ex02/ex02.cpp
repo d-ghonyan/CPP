@@ -17,28 +17,38 @@ int main(int argc, char **argv)
 	std::list<int> nums_l;
 	std::vector<int> nums_v;
 
-	if (argc < 3 || argv_check(argv))
-		return (0);
+	if (argc < 3 || argv_check(argv)) return (0);
 	
 	for (size_t i = 1; argv[i]; ++i) { nums_v.push_back(str2int(argv[i])); nums_l.push_back(str2int(argv[i])); }
 
+	std::cout.precision(17);
 
-	// gettimeofday(&now, NULL);
+	{
+		std::cout << "\nBefore: ";
+		print(nums_v, 10);
 
-	// double start = gettime(now);
-	
-	// merge_sort_vector(nums_v);
+		gettimeofday(&now, NULL);
+		double start = gettime(now);
+		merge_sort(nums_v);
+		double end = gettime(now);
 
-	// double end = gettime(now);
+		std::cout << "After: ";
+		print(nums_v, 10);
 
-	// std::cout.precision(17);
+		std::cout << "\nTime taken by std::vector: " << std::fixed << end - start << " ms\n\n\n"; 
+	}
+	{
+		std::cout << "Before: ";
+		print(nums_l, 10);
 
-	// print(nums_v);
+		gettimeofday(&now, NULL);
+		double start = gettime(now);
+		merge_sort(nums_l);
+		double end = gettime(now);
 
-	// std::cout << "Time taken by vector: " << std::fixed << end - start << " ms\n"; 
-	// std::cout << nums_v.size() << "\n";
+		std::cout << "After: ";
+		print(nums_l, 10);
 
-	insertion_sort(nums_l);
-
-	merge_sort_list(nums_l);
+		std::cout << "\nTime taken by std::list: " << std::fixed << end - start << " ms\n\n";
+	}
 }
