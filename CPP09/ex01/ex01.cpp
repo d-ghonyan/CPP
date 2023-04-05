@@ -33,8 +33,8 @@ int main(int argc, char **argv)
 		}
 		if (temp.size() == 1 || temp.empty() || nums.empty())
 		{
-			std::cerr << "Error: why?\n";
-			return 420;
+			std::cerr << "Error: not enough numbers or operations?\n";
+			return 1;
 		}
 
 		int i, j;
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 		catch (const char *e)
 		{
 			std::cerr << "Error: " << e << "\n";
-			return (68 + 1);
+			return (1);
 		}
 
 		std::string operation = nums.front();
@@ -61,7 +61,9 @@ int main(int argc, char **argv)
 		else if (operation == "/")
 			nums.push_front(std::to_string(j / i));
 		temp.pop_front();
+		
 	}
+	if (temp.size() != 0) {std::cerr << "Error: Not enough numbers or operations?\n"; return 1;}
 	try { std::cout << str2int(nums.front()) << "\n"; }
 	catch (const char *e) { std::cerr << "Error: " << e << '\n'; }
 }

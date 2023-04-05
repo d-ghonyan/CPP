@@ -1,4 +1,19 @@
 date | value
-2017-01-03 | 1
-200900000000-01-01 | 000000002 
-2011-01-03 | 2
+date | value
+date | value
+date | value
+date | value
+date | value
+date | value
+date | value
+date | value
+date | value
+date | value
+
+
+
+
+2015-4-30 | 5000
+
+
+

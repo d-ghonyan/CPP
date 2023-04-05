@@ -25,8 +25,8 @@ int	argv_check(std::string s)
 	{
 		if (valid.find(s[i]) == std::string::npos)
 		{
-			std::cerr << "Error: you're dumb\n";
-			return 69;
+			std::cerr << "Error: invalid numbers\n";
+			return 1;
 		}
 	}
 	return 0;

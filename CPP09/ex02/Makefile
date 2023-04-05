@@ -12,7 +12,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(OBJS) -o $(NAME)
+	$(CXX) -fsanitize=address -g3 $(OBJS) -o $(NAME)
 
 clean:
 	rm -f *.o

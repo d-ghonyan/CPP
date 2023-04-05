@@ -23,7 +23,9 @@ void printExchangeRate(std::string filename, char delim, std::map<Date, std::str
 		second = trim(second);
 		first = trim(first);
 		//std::cout << second << "\n";
-		if (!first[0] || !second[0])
+		if (!first[0] && !second[0])
+			continue ;
+		else if (!first[0] || !second[0])
 			std::cerr << "Error: empty values in file\n";
 		else
 		{
