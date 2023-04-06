@@ -5,6 +5,7 @@
 #include <climits>
 
 std::string trim(std::string to_trim);
+int is_in_arr(long num, long *arr, size_t count);
 
 #define LEAP_YEAR(x) ((x % 400 == 0) || (x % 100 != 0 && x % 4 == 0))
 
@@ -20,19 +21,18 @@ class Date
 {
 private:
 	long y, m, d;
-	std::string year, month, day;
 
-	void parse_date();
-	void is_num();
+	void is_num(std::string strs[3]);
 	long str2int(std::string str, int limit = INT_MAX);
 	void check_range(long y, long m, long d);
 
 public:
 	Date(std::string date);
-
+	Date(const Date& other);
 	bool operator<(const Date& lhs) const;
 	bool operator==(const Date& lhs) const;
 	bool operator<=(const Date& lhs) const;
+	Date& operator=(const Date& lhs);
 
 	long getYear() const;
 	long getMonth() const;

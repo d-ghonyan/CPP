@@ -26,84 +26,28 @@ bool is_float(std::string hello)
 
 float str2float (std::string str)
 {
-    float 		l;
+	float 		l;
 	const char	*s = str.c_str();
 
-    errno = 0;
+	errno = 0;
 
 	if (!is_float(str)) { throw InvalidNumber(); }
 
-    l = strtof(s, NULL);
+	l = strtof(s, NULL);
 
-    if (errno == ERANGE) { throw NumberOutOfRange(); }
+	if (errno == ERANGE) { throw NumberOutOfRange(); }
 
-    return l;
+	return l;
 }
 
-std::map<Date, std::string> readFile(std::string filename, char delim)
+int is_in_arr(long num, long *arr, size_t count)
 {
-	std::ifstream file(filename);
-	std::map<Date, std::string> pairs;
-
-	if (file.fail())
+	for (size_t i = 0; i < count; i++)
 	{
-		perror("");
-		exit(1);
+		if (arr[i] == num)
+			return 1;
 	}
-
-	std::string line;
-	while (std::getline(file, line))
-	{
-		std::istringstream sstream(line);
-
-		std::string first, second;
-
-		std::getline(sstream, first, delim);
-		
-		if (first == "date")
-			continue ;
-
-		std::getline(sstream, second, delim);
-
-		if ((!first[0] && second[0]) || (!second[0] && first[0]))
-		{
-			std::cerr << "Error: empty values in database\n";
-			exit (67);
-		}
-
-		if (!first[0] && !second[0])
-			continue ;
-
-		try
-		{
-			pairs[first] = second;
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << ": " << first << '\n';
-			exit(128);
-		}
-	}
-	return pairs;
-}
-
-float	getExchangeRate(Date date, std::map<Date, std::string> pairs)
-{
-	std::map<Date, std::string>::iterator it = pairs.begin();
-
-	while (it != pairs.end() && (*it).first <= date) { ++it; }
-
-	if (date < (*(pairs.begin())).first)
-	{
-		return -1;
-	}
-
-	if (it != pairs.end() && (*it).first == date)
-	{
-		return str2float((*(it)).second);
-	}
-
-	return str2float(((*(--it)).second));
+	return 0;
 }
 
 std::string trim(std::string to_trim)

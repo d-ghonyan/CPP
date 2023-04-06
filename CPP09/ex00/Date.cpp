@@ -1,90 +1,54 @@
 #include "Date.hpp"
 
+Date::Date(std::string date)
+{
+	std::string strs[3];
+	std::istringstream sstream(date);
+
+	std::getline(sstream, strs[0], '-');
+	std::getline(sstream, strs[1], '-');
+	std::getline(sstream, strs[2], '-');
+
+	if (!strs[0][0] || !strs[1][0] || !strs[2][0]) { throw InvalidDateException(); }
+
+	is_num(strs);
+
+	y = str2int(strs[0]);
+	m = str2int(strs[1], 12);
+	d = str2int(strs[2], 31);
+
+	check_range(y, m, d);
+}
+
+Date::Date(const Date& other)
+{
+	*this = other;
+}
+
 long Date::str2int(std::string str, int limit)
 {
 	long		l;
 	const char	*year_c = str.c_str();
 
-    errno = 0;
-    l = strtol(year_c, NULL, 10);
-    if ((errno == ERANGE && (l == LONG_MAX || l == LONG_MIN)) || l > limit || l < 0)
+	errno = 0;
+	l = strtol(year_c, NULL, 10);
+	if ((errno == ERANGE && (l == LONG_MAX || l == LONG_MIN)) || l > limit || l <= 0)
 	{
-        throw DateOutOfRange();
-    }
-    if (errno == EINVAL && l == 0)
-	{
-        throw InvalidDateException();
-    }
+		throw DateOutOfRange();
+	}
 	return l;
 }
 
-void Date::is_num()
+void Date::is_num(std::string strs[3])
 {
-	for (size_t i = 0; i < year.size(); ++i)
+	for (size_t i = 0; i < 3; ++i)
 	{
-		if (year[i] < '0' || year[i] > '9')
-			throw InvalidDateException();
+		for (size_t j = 0; j < strs[i].size(); ++j)
+		{
+			if (strs[i][j] < '0' || strs[i][j] > '9')
+				throw InvalidDateException();
+		}
 	}
-
-	for (size_t i = 0; i < day.size(); ++i)
-	{
-		if (day[i] < '0' || day[i] > '9')
-			throw InvalidDateException();
-	}
-
-	for (size_t i = 0; i < month.size(); ++i)
-	{
-		if (month[i] < '0' || month[i] > '9')
-			throw InvalidDateException();
-	}	
-}
-
-Date::Date(std::string date)
-{
-	std::istringstream sstream(date);
-
-	std::getline(sstream, year, '-');
-	std::getline(sstream, month, '-');
-	std::getline(sstream, day, '-');
-
-	year = trim(year);
-	month = trim(month);
-	day = trim(day);
-
-	parse_date();
-}
-
-const char *Date::InvalidDateException::what() const throw()
-{
-	return "Error: invalid date";
-}
-
-const char *Date::DateOutOfRange::what() const throw()
-{
-	return "Error: date out of range";
-}
-
-void Date::parse_date()
-{
-	is_num();
-
-	y = str2int(year);
-	m = str2int(month, 12);	
-	d = str2int(day, 31);	
-
-	if (year.size() < 4 || month.size() > 2 || day.size() > 2) { throw InvalidDateException(); }
-
-	check_range(y, m, d);
-}
-
-int is_in_arr(long num, long *arr, size_t count)
-{
-	for (size_t i = 0; i < count; i++)
-	{
-		if (arr[i] == num)
-			return 1;
-	}
-	return 0;
 }
 
 void Date::check_range(long y, long m, long d)
@@ -93,6 +57,15 @@ void Date::check_range(long y, long m, long d)
 
 	if ((is_in_arr(m, shorts, 5) && d == 31) || (m == FEB && ((!(LEAP_YEAR(y)) && d > 28) || (LEAP_YEAR(y) && d > 29))))
 		throw DateOutOfRange();
+}
+
+Date& Date::operator=(const Date& lhs)
+{
+	y = lhs.y;
+	m = lhs.m;
+	d = lhs.d;
+
+	return *this;
 }
 
 bool Date::operator<(const Date& lhs) const
@@ -122,23 +95,20 @@ bool Date::operator<=(const Date& lhs) const
 	return (*this < lhs || *this == lhs);
 }
 
-long Date::getYear() const
-{
-	return y;
-}
-long Date::getMonth() const
-{
-	return m;
-}
-long Date::getDay() const
-{
-	return d;
-}
+long Date::getYear() const { return y; }
+
+long Date::getMonth() const { return m; }
+
+long Date::getDay() const { return d; }
 
 std::ostream& operator<<(std::ostream &os, const Date& date)
 {
 	os << date.getYear() << "-" << date.getMonth() << "-" << date.getDay();
 	return os;
 }
+
+const char *Date::InvalidDateException::what() const throw() { return "Error: invalid date"; }
+
+const char *Date::DateOutOfRange::what() const throw() { return "Error: date out of range"; }
 
 Date::~Date() { }
