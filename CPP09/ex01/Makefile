@@ -3,16 +3,17 @@ CXX = c++
 NAME = RPN
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+SANITIZE = -fsanitize=address -g3
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
 
 ifneq ($(UNAME), Darwin)
-	CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+	CXXFLAGS = -Wall -Wextra -Werror -std=c++11 $(SANITIZE)
 endif
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) -fsanitize=address $(OBJS) -o $(NAME)
+	$(CXX) $(SANITIZE) $(OBJS) -o $(NAME)
 
 clean:
 	rm -f *.o
