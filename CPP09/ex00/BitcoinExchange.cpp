@@ -20,7 +20,7 @@ BitcoinExchange::BitcoinExchange(std::string filename, char delim)
 
 		if ((!first[0] && second[0]) || (!second[0] && first[0]))
 		{
-			std::cerr << "Error: empty values in the database, skipping\n";
+			std::cerr << "Empty values in the database, skipping\n";
 			continue ;
 		}
 
@@ -80,8 +80,14 @@ void BitcoinExchange::getExchangeRate(std::string filename, char delim) const
 		{
 			try
 			{
-				float mult = str2float(second);
-				float rate = findExchangeRate(first);
+				std::stringstream s(second);
+
+				double mult;
+				double rate = findExchangeRate(first);
+
+				s >> mult;
+
+				std::cout << mult << "\n";
 
 				if (mult < 0 || mult > 1000) { throw InvalidNumberException(); }
 				if (rate < 0) { throw DateNotFoundException(); }
@@ -90,7 +96,7 @@ void BitcoinExchange::getExchangeRate(std::string filename, char delim) const
 			}
 			catch(const std::exception& e)
 			{
-				std::cerr << e.what() << '\n';
+				std::cerr << "Error: " <<  e.what() << '\n';
 			}
 		}
 	}

@@ -5,6 +5,7 @@
 
 long str2int (std::string str);
 int	argv_check(std::string s);
+double str2double (std::string str);
 
 int main(int argc, char **argv)
 {
@@ -37,12 +38,12 @@ int main(int argc, char **argv)
 			return 1;
 		}
 
-		int i, j;
+		double i, j;
 
 		try
 		{
-			i = str2int(temp.front()); temp.pop_front();
-			j = str2int(temp.front());
+			i = str2double(temp.front()); temp.pop_front();
+			j = str2double(temp.front());
 		}
 		catch (const char *e)
 		{
@@ -52,6 +53,7 @@ int main(int argc, char **argv)
 
 		std::string operation = nums.front();
 		nums.pop_front();
+
 		if (operation == "*")
 			nums.push_front(std::to_string(j * i));
 		else if (operation == "+")
@@ -64,6 +66,6 @@ int main(int argc, char **argv)
 		
 	}
 	if (temp.size() != 0) {std::cerr << "Error: Not enough numbers or operations?\n"; return 1;}
-	try { std::cout << str2int(nums.front()) << "\n"; }
+	try { std::cout << str2double(nums.front()) << "\n"; }
 	catch (const char *e) { std::cerr << "Error: " << e << '\n'; }
 }
