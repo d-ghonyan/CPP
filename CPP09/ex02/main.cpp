@@ -35,7 +35,7 @@ int	argv_check(char **argv)
 			if (argv[i][j] > '9' || argv[i][j] < '0')
 			{
 				std::cerr << "Error: I accept only digits\n";
-				return 69;
+				return 1;
 			}
 		}
 		try { PmergeMe::str2int(argv[i]); }
