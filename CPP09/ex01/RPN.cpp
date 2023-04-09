@@ -1,7 +1,5 @@
 #include "RPN.hpp"
 
-std::string trim(std::string s);
-
 RPN::RPN(std::string expression)
 {
 	parse_str(expression);

@@ -11,7 +11,6 @@
 #include <algorithm>
 #include <sys/time.h>
 
-typedef struct timeval t_timeval;
 
 long str2int (std::string str);
 int	argv_check(char **argv);
