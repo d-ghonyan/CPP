@@ -42,8 +42,8 @@ void PmergeMe::sortList()
 
 	std::cout << "\nTime taken by std::list: " << std::fixed << end - start << " ms\n\n";
 
-	std::cout << "List after sorting: ";
 	print_list(DEFAULT_PRECISION);
+	std::cout << "std::ist after sorting: ";
 }
 
 void PmergeMe::sortVector()
@@ -64,7 +64,7 @@ void PmergeMe::sortVector()
 
 	std::cout << "Time taken by std::vector: " << std::fixed << end - start << " ms\n\n";
 
-	std::cout << "Vector after sorting: ";
+	std::cout << "std::vector after sorting: ";
 	print_vector(DEFAULT_PRECISION);
 }
 
