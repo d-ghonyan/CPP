@@ -6,8 +6,6 @@
 
 #define IS_OPERATION(s, i) (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/')
 
-double str2double (std::string str);
-
 class RPN
 {
 	std::string to_calc;

@@ -4,9 +4,6 @@
 #include <sstream>
 #include <climits>
 
-std::string trim(std::string to_trim);
-int is_in_arr(long num, long *arr, size_t count);
-
 #define LEAP_YEAR(x) ((x % 400 == 0) || (x % 100 != 0 && x % 4 == 0))
 
 typedef enum e_short {
@@ -33,6 +30,8 @@ public:
 	bool operator==(const Date& lhs) const;
 	bool operator<=(const Date& lhs) const;
 	Date& operator=(const Date& lhs);
+	static int is_in_arr(long num, long *arr, size_t count);
+	static std::string trim(std::string to_trim);
 
 	long getYear() const;
 	long getMonth() const;

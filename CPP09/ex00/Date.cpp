@@ -25,6 +25,28 @@ Date::Date(const Date& other)
 	*this = other;
 }
 
+int Date::is_in_arr(long num, long *arr, size_t count)
+{
+	for (size_t i = 0; i < count; i++)
+	{
+		if (arr[i] == num)
+			return 1;
+	}
+	return 0;
+}
+
+std::string Date::trim(std::string to_trim)
+{
+	std::string ret;
+
+	for (size_t i = 0; i < to_trim.size(); ++i)
+	{
+		if (!(::isspace(to_trim[i])))
+			ret.push_back(to_trim[i]);
+	}
+	return ret.c_str();
+}
+
 long Date::str2int(std::string str, int limit)
 {
 	long		l;

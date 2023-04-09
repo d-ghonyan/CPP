@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <cmath>
 #include <string>
 #include <cstring>
 #include <sstream>
@@ -16,7 +17,7 @@ class BitcoinExchange
 {
 private:
 	std::map<Date, std::string> base;
-	float findExchangeRate(Date date) const;
+	double findExchangeRate(Date date) const;
 public:
 	BitcoinExchange(std::string filename, char delim);
 	BitcoinExchange(const BitcoinExchange& other);
@@ -24,12 +25,13 @@ public:
 	BitcoinExchange& operator=(const BitcoinExchange& lhs);
 
 	void getExchangeRate(std::string inputFile, char delim) const;
+	static bool is_double(std::string hello);
+	static double str2double(std::string str);
 
 	class InvalidFileException : public std::exception { const char *what () const throw(); };
 	class DateNotFoundException : public std::exception { const char *what () const throw(); };
 	class InvalidNumberException : public std::exception { const char *what () const throw(); };
+	class NumberOutOfRangeException : public std::exception { const char *what () const throw(); };
 	
 	~BitcoinExchange();
 };
-
-std::ostream& operator<<(std::ostream &os, const BitcoinExchange& BitcoinExchange);
