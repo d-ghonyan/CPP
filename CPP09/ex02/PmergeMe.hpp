@@ -6,11 +6,16 @@
 #include <climits>
 #include <iostream>
 #include <algorithm>
+#include <sys/time.h>
+
+typedef struct timeval t_timeval;
+
+#define DEFAULT_PRECISION 100
 
 class PmergeMe
 {
-	char **nums;
 	std::list<int> nums_l;
+	std::vector<int> nums;
 	std::vector<int> nums_v;
 	void merge_sort(std::list<int>& nums);
 	void merge_sort(std::vector<int>& nums);
@@ -23,6 +28,7 @@ public:
 	PmergeMe(const PmergeMe& other);
 
 	static long str2int (std::string str);
+	static double gettime(t_timeval start);
 
 	void sortList();
 	void sortVector();
