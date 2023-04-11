@@ -25,6 +25,8 @@ BitcoinExchange::BitcoinExchange(std::string filename, char delim)
 			continue ;
 		}
 
+		if (!is_double(second)) throw InvalidValuesInDatabaseException();
+
 		base[first] = second;
 	}
 }
@@ -116,8 +118,6 @@ bool BitcoinExchange::is_double(std::string hello)
 			return false;
 	}
 
-		// if (i == hello.size()) return true;
-
 	i += (hello[i] == 'e' || hello[i] == 'E');
 	i += (hello[i] == '+' || hello[i] == '-');
 
@@ -152,5 +152,6 @@ const char *BitcoinExchange::InvalidFileException::what() const throw() { return
 const char *BitcoinExchange::DateNotFoundException::what() const throw() { return "Date not found in the database"; }
 const char *BitcoinExchange::InvalidNumberException::what() const throw() { return "Invalid number"; }
 const char *BitcoinExchange::NumberOutOfRangeException::what() const throw() { return "Number out of range"; }
+const char *BitcoinExchange::InvalidValuesInDatabaseException::what() const throw() { return "Invalid values in the database"; }
 
 BitcoinExchange::~BitcoinExchange() { }

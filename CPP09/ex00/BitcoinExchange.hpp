@@ -32,6 +32,7 @@ public:
 	class DateNotFoundException : public std::exception { const char *what () const throw(); };
 	class InvalidNumberException : public std::exception { const char *what () const throw(); };
 	class NumberOutOfRangeException : public std::exception { const char *what () const throw(); };
+	class InvalidValuesInDatabaseException : public std::exception { const char *what () const throw(); };
 	
 	~BitcoinExchange();
 };
